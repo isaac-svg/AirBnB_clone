@@ -142,7 +142,7 @@ class TestUser_save(unittest.TestCase):
 
 
 class TestUser_to_dict(unittest.TestCase):
-    """Unittests for testing to_dict method of the User class."""
+    """Unittests to_dict method of the User class."""
 
     def test_to_dict_type(self):
         self.assertTrue(dict, type(User().to_dict()))
@@ -181,14 +181,15 @@ class TestUser_to_dict(unittest.TestCase):
         }
         self.assertDictEqual(us.to_dict(), tdict)
 
-    def test_contrast_to_dict_dunder_dict(self):
-        us = User()
-        self.assertNotEqual(us.to_dict(), us.__dict__)
-
     def test_to_dict_with_arg(self):
         us = User()
         with self.assertRaises(TypeError):
             us.to_dict(None)
+
+    def test_contrast_to_dict_dunder_dict(self):
+        us = User()
+        self.assertNotEqual(us.to_dict(), us.__dict__)
+
 
 
 if __name__ == "__main__":

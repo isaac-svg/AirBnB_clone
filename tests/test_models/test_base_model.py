@@ -6,25 +6,16 @@ Unittest classes:
     TestBaseModel_save
     TestBaseModel_to_dict
 """
-import os
-import models
-import unittest
-from datetime import datetime
-from time import sleep
 from models.base_model import BaseModel
+import models
+from datetime import datetime
+import unittest
+from time import sleep
+import os
 
 
 class TestBaseModel_instantiation(unittest.TestCase):
-    """Unittests for testing instantiation of the BaseModel class."""
-
-    def test_no_args_instantiates(self):
-        self.assertEqual(BaseModel, type(BaseModel()))
-
-    def test_new_instance_stored_in_objects(self):
-        self.assertIn(BaseModel(), models.storage.all().values())
-
-    def test_id_is_public_str(self):
-        self.assertEqual(str, type(BaseModel().id))
+    """Unittests instantiation of the BaseModel class."""
 
     def test_created_at_is_public_datetime(self):
         self.assertEqual(datetime, type(BaseModel().created_at))
@@ -49,12 +40,21 @@ class TestBaseModel_instantiation(unittest.TestCase):
         bm2 = BaseModel()
         self.assertLess(bm1.updated_at, bm2.updated_at)
 
+    def test_no_args_instantiates(self):
+        self.assertEqual(BaseModel, type(BaseModel()))
+
+    def test_new_instance_stored_in_objects(self):
+        self.assertIn(BaseModel(), models.storage.all().values())
+
+    def test_id_is_public_str(self):
+        self.assertEqual(str, type(BaseModel().id))
+
     def test_str_representation(self):
         dt = datetime.today()
         dt_repr = repr(dt)
         bm = BaseModel()
-        bm.id = "123456"
         bm.created_at = bm.updated_at = dt
+        bm.id = "123456"
         bmstr = bm.__str__()
         self.assertIn("[BaseModel] (123456)", bmstr)
         self.assertIn("'id': '123456'", bmstr)
@@ -87,7 +87,7 @@ class TestBaseModel_instantiation(unittest.TestCase):
 
 
 class TestBaseModel_save(unittest.TestCase):
-    """Unittests for testing save method of the BaseModel class."""
+    """Unittests for save method of the BaseModel class."""
 
     @classmethod
     def setUp(self):
@@ -107,13 +107,6 @@ class TestBaseModel_save(unittest.TestCase):
         except IOError:
             pass
 
-    def test_one_save(self):
-        bm = BaseModel()
-        sleep(0.05)
-        first_updated_at = bm.updated_at
-        bm.save()
-        self.assertLess(first_updated_at, bm.updated_at)
-
     def test_two_saves(self):
         bm = BaseModel()
         sleep(0.05)
@@ -125,11 +118,6 @@ class TestBaseModel_save(unittest.TestCase):
         bm.save()
         self.assertLess(second_updated_at, bm.updated_at)
 
-    def test_save_with_arg(self):
-        bm = BaseModel()
-        with self.assertRaises(TypeError):
-            bm.save(None)
-
     def test_save_updates_file(self):
         bm = BaseModel()
         bm.save()
@@ -137,9 +125,22 @@ class TestBaseModel_save(unittest.TestCase):
         with open("file.json", "r") as f:
             self.assertIn(bmid, f.read())
 
+    def test_one_save(self):
+        bm = BaseModel()
+        sleep(0.05)
+        first_updated_at = bm.updated_at
+        bm.save()
+        self.assertLess(first_updated_at, bm.updated_at)
+
+    def test_save_with_arg(self):
+        bm = BaseModel()
+        with self.assertRaises(TypeError):
+            bm.save(None)
+
+
 
 class TestBaseModel_to_dict(unittest.TestCase):
-    """Unittests for testing to_dict method of the BaseModel class."""
+    """Unittests for to_dict method of the BaseModel class."""
 
     def test_to_dict_type(self):
         bm = BaseModel()
