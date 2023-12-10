@@ -1,11 +1,11 @@
 #!/usr/bin/python3
-"""Declares the HBnB console"""
+"""Declares the HBNB console"""
+import re
 from models.state import State
 from shlex import split
 from models.review import Review
 from models.base_model import BaseModel
 from models.amenity import Amenity
-import re
 from models import storage
 from models.user import User
 import cmd
@@ -32,10 +32,10 @@ def parse(arg):
 
 
 class HBNBCommand(cmd.Cmd):
-    """Declares the HBnB command interpreter
+    """Declares the HBNB cmd interpreter
 
     Attributes:
-        prompt (str): The command prompt
+        prompt (str): The cmd prompt
     """
 
     prompt = "(hbnb) "
@@ -52,13 +52,13 @@ class HBNBCommand(cmd.Cmd):
     
 
     def default(self, arg):
-        """Default behavior for cmd module when input is invalid"""
+        """Default behavior for cmd module when input is invalid or not correct"""
         argdict = {
-            "all": self.do_all,
-            "show": self.do_show,
+            "update": self.do_update,
             "destroy": self.do_destroy,
             "count": self.do_count,
-            "update": self.do_update
+            "all": self.do_all,
+            "show": self.do_show
         }
         match = re.search(r"\.", arg)
         if match is not None:
@@ -73,11 +73,11 @@ class HBNBCommand(cmd.Cmd):
         return False
     
     def emptyline(self):
-        """ignore an empty line."""
+        """ignore an empty line"""
         pass
 
     def do_quit(self, arg):
-        """Exit the program."""
+        """Exit the program"""
         return True
 
     def do_EOF(self, arg):
@@ -87,7 +87,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, arg):
         """Usage: create <class>
-        Create a new class instance and print its id.
+        Create a new class instance and print its id
         """
         argl = parse(arg) #argument length
         if len(argl) == 0:
@@ -118,7 +118,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, arg):
         """Usage: show <class> <id> or <class>.show(<id>)
-        Display the string representation of a class instance with a given id.
+        Display the string representation of a class instance with a given id
         """
         argl = parse(arg)
         objdict = storage.all() #get all stored data
@@ -135,8 +135,9 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, arg):
         """Usage: all or all <class> or <class>.all()
-        Prints string representations of all instances of a given class.
-        If no class is specified, prints all instantiated objects."""
+        Prints string representations of all instances of a given class
+        If no class is specified, prints all instantiated objects
+        """
         argl = parse(arg)
         if len(argl) > 0 and argl[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")

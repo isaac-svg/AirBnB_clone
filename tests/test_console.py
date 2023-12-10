@@ -199,7 +199,7 @@ class TestHBNBCommand_create(unittest.TestCase):
 
 
 class TestHBNBCommand_show(unittest.TestCase):
-    """Unittests for show from the HBNB command interpreter"""
+    """Unittests for the HBNB command interpreter"""
 
     @classmethod
     def setUp(self):
@@ -452,7 +452,7 @@ class TestHBNBCommand_show(unittest.TestCase):
 
 
 class TestHBNBCommand_destroy(unittest.TestCase):
-    """Unittests for destroy from the HBNB command interpreter."""
+    """Unittests for destroy from the HBNB command interpreter"""
 
     @classmethod
     def setUp(self):
@@ -706,7 +706,7 @@ class TestHBNBCommand_destroy(unittest.TestCase):
 
 
 class TestHBNBCommand_all(unittest.TestCase):
-    """Unittests for all of the HBNB command interpreter."""
+    """Unittests for all of the HBNB command interpreter"""
 
     @classmethod
     def setUp(self):
