@@ -1,0 +1,32 @@
+.container{
+    max-width: 1000px;
+    margin-block: 30px;
+    margin-inline: auto;
+}
+
+.filters{
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    height: 70px;
+    width:100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.filters > button {
+    font-size: 18px;
+    background-color: hsl(358, 100%, 68%);
+    color: #FFFFFF;
+    height: 48px;
+    width: 20%; 
+    border: none;
+    border-radius: 4px;
+    /* align-self: flex-end; */
+    justify-self: flex-end;
+    margin-right: 30px;
+}
+.filters > button:hover{
+    background-color: hsla(358, 100%, 68%, 0.9);
+}
