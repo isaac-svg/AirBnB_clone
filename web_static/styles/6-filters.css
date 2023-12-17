@@ -1,0 +1,88 @@
+.container{
+    max-width: 1000px;
+    margin-block: 30px;
+    margin-inline: auto;
+}
+
+.filters{
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    height: 70px;
+    width:100%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    /* position: relative; */
+    /* justify-content:; */
+}
+
+.filters > button {
+    font-size: 18px;
+    background-color: hsl(358, 100%, 68%);
+    color: #FFFFFF;
+    height: 48px;
+    width: 20%; 
+    border: none;
+    border-radius: 4px;
+    /* align-self: flex-end; */
+    justify-self: flex-end;
+    margin-right: 30px;
+}
+.filters > button:hover{
+    background-color: hsla(358, 100%, 68%, 0.9);
+}
+.locations{
+    width: 25%;
+    height: 100%;
+    border-right: 1px solid #DDDDDD;
+    color: black;
+    font: 600;
+    flex: 0.25;
+}
+
+.locations > h3{
+padding-top: 20px;
+}
+.locations >h3 , .locations  h4{
+    padding-left: 15px;
+
+}
+.amenities > h3{
+    padding-top: 15px;
+    padding-left: 30px;
+}
+.si{
+    padding-left: 30px;
+}
+.amenities{
+    width: 25%;
+    height: 100%;
+    color: black;
+    font: 400;
+    font-size: 14px;
+    flex: 1;
+}
+.locations ul, .amenities ul{
+    display: none;
+}
+.locations:hover ul, .amenities:hover ul{
+    display: block;
+}
+.amenities ul, .locations ul{
+    background: #FAFAFA;
+    border: 1px solid #DDDDDD;
+    margin-top: 15px;
+    padding: 10px;
+    max-width: 200px;
+    margin-inline: none;
+    /* display: none; */
+}
+.amenities ul:hover, .locations ul:hover{
+    /* display: block; */
+}
+.locations li, .amenities li{
+    padding-top: 5px;
+}
+.locations li p{
+    padding-left: 15px;
+}
